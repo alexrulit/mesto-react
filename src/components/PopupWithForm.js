@@ -6,11 +6,11 @@ function PopupWithForm(props) {
 
     return(    
     <div className={className}>
-      <form name={props.name} action="#" className="popup__container" novalidate>
+      <form name={props.name} action="#" className="popup__container" noValidate>
         <h2 className="popup__title">{props.title}</h2>
         {props.children}
         <button type="submit" className="popup__submit">Сохранить</button>
-        <button type="button" className="popup__close" />
+        <button type="button" className="popup__close" onClick={props.onClose} />
       </form>
     </div>
     );
