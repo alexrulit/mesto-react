@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { Children } from 'react';
 
 function PopupWithForm(props) {
-    let className;
-    props.isOpen ? className = `popup popup_type_${props.name} popup_opened` : className = `popup popup_type_${props.name}`;
-
     return(    
-    <div className={className}>
+    <div className={`popup popup_type_${props.name} ${props.isOpen ? 'popup_opened' : ''}`}>
       <form name={props.name} action="#" className="popup__container" noValidate>
         <h2 className="popup__title">{props.title}</h2>
         {props.children}

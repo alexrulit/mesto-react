@@ -17,7 +17,7 @@ class Api {
       if(method === 'POST' || method === 'PATCH'){
         this._requestInit.body = body;
       }
-      return fetch(this._baseUrl + endpoint, this._requestInit)
+      return fetch(`${this._baseUrl}${endpoint}`, this._requestInit)
       .then(res => {
         if (res.ok) {
           return res.json();
@@ -52,7 +52,7 @@ class Api {
   
     cardLike(cardId, state) {
       this._cardId = cardId;
-      state ? this._method = 'DELETE' : this._method = 'PUT';
+      this._method =  state ? 'DELETE' : 'PUT';
       return this._sendRequest('/cards/likes/' + this._cardId, this._method, {});
     }
   
