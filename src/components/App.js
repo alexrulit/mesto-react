@@ -40,9 +40,9 @@ function App() {
     <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick} />
     <Footer />
     <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
-      <input id="popupAuthor" name="popupAuthor" type="text" className="popup__input" minLength="2" maxLength="40" required pattern="[А-Яа-яA-Za-z -]{1,}" />
+      <input id="popupAuthor" name="popupAuthor" type="text" className="popup__input" placeholder="Имя" minLength="2" maxLength="40" required pattern="[А-Яа-яA-Za-z -]{1,}" />
       <span id="popupAuthor-error" className="popup__input-error"></span>
-      <input id="popupDesc" name="popupDesc" type="text" className="popup__input" minLength="2" maxLength="200" required />
+      <input id="popupDesc" name="popupDesc" type="text" className="popup__input" placeholder="Обо мне" minLength="2" maxLength="200" required />
       <span id="popupDesc-error" className="popup__input-error"></span>
     </PopupWithForm>
     <PopupWithForm name="addcard" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
