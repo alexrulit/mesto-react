@@ -1,37 +1,21 @@
-import React, { useState } from 'react';
-import api from '../utils/api';
+import React from 'react';
 import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
 
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([]);
-
-  React.useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([result, data]) => {
-        setUserName(result.name);
-        setUserDescription(result.about);
-        setUserAvatar(result.avatar);
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
 
     return(
       <main className="main">
         <section className="profile">
           <div className="profile__avatar-link" onClick={props.onEditAvatar}>
-            <img className="profile__avatar" src={userAvatar} alt="Аватар" />
+            <img className="profile__avatar" src={currentUser.avatar} alt="Аватар" />
           </div>
           <div className="profile__info">
             <div className="profile__author">
-              <h1 className="profile__title">{userName}</h1>
-              <p className="profile__subtitle">{userDescription}</p>
+              <h1 className="profile__title">{currentUser.name}</h1>
+              <p className="profile__subtitle">{currentUser.about}</p>
             </div>
             <button type="button" className="profile__edit-button" onClick={props.onEditProfile} />
           </div>
@@ -39,9 +23,9 @@ function Main(props) {
         </section>
         <section className="elements">
           <ul className="elements__list">
-          {cards.map((item, index) => {
+          {props.cardList.map((item, index) => {
             return (
-              <Card card={item} key={index} onCardClick={props.onCardClick} />
+              <Card card={item} key={index} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete} />
             );
           })}
           </ul>
