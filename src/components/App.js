@@ -79,12 +79,10 @@ function App() {
     api.setUserInfo(user.name, user.about)
     .then(result => {
       setCurrentUser(result);
+      closeAllPopups();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      closeAllPopups();
     });
   }
 
@@ -92,12 +90,10 @@ function App() {
     api.setAvatar(avatar.avatar)
     .then(result => {
       setCurrentUser(result);
+      closeAllPopups();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      closeAllPopups();
     });
   }
 
@@ -105,12 +101,10 @@ function App() {
     api.addNewCard(card.name, card.link)
     .then(result => {
       setCards([result, ...cards]);
+      closeAllPopups();
     })
     .catch(err => {
       console.log(err);
-    })
-    .finally(() => {
-      closeAllPopups();
     });
   }
 
